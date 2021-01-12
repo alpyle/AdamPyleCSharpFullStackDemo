@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="Root">
+        <p id="AddToMe"></p>
+    </div>
+    <script>
+        fetch('https://localhost:44392/BankInfo')
+    .then(res => res.json())
+            .then((out) => {
+                for (var k in out) {
+                   
+                    document.getElementById("AddToMe").insertAdjacentHTML("beforebegin",
+                        "<H3>Bank Name: " + out[k].Name + "</H3>");
+                    
+                    document.getElementById("AddToMe").insertAdjacentHTML("beforebegin",
+                        "<p>  (Bank Approved:" + out[k].Approved + ") (Rating: "+out[k].Rating+") (Total Assets: $"+out[k].TotalAssets+") (Date: "+out[k].Date+") (Calculated Limit: "+out[k].CalculatedLimit+")</p>");
+                }
+        console.log('Output: ', out);
+}).catch(err => console.error(err));
+    </script>
+</body>
+</html>
